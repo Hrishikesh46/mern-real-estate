@@ -1,5 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import HeaderNav from "./pages/HeaderNav";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -8,13 +10,23 @@ import Profile from "./pages/Profile";
 
 function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <Home /> },
-    { path: "/sign-in", element: <SignIn /> },
-    { path: "/sign-up", element: <SignUp /> },
-    { path: "/about", element: <About /> },
-    { path: "/profile", element: <Profile /> },
+    {
+      path: "/",
+      element: <HeaderNav />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "/sign-in", element: <SignIn /> },
+        { path: "/sign-up", element: <SignUp /> },
+        { path: "/about", element: <About /> },
+        { path: "/profile", element: <Profile /> },
+      ],
+    },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <React.Fragment>
+      <RouterProvider router={router} />
+    </React.Fragment>
+  );
 }
 
 export default App;
