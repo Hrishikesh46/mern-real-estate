@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+const userRouter = require("./routes/user.route");
 
 mongoose
   .connect(process.env.MONGO)
@@ -14,6 +15,8 @@ mongoose
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Listening on Port 3000  !");
+app.listen(8000, () => {
+  console.log("Listening on Port 8000  !");
 });
+
+app.use("/api/user", userRouter);
