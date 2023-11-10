@@ -4,12 +4,12 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, "Please tell us your name!"],
       unique: true,
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Please provide your email!"],
       unique: true,
     },
     password: {
@@ -20,6 +20,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = new mongoose.Model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
