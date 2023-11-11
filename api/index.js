@@ -15,6 +15,9 @@ mongoose
   });
 
 const app = express();
+app.listen(8000, () => {
+  console.log("Listening on Port 8000  !");
+});
 
 // to get the req.body
 app.use(express.json());
@@ -31,8 +34,4 @@ app.use((err, req, res, next) => {
     statusCode: statusCode,
     message: message,
   });
-});
-
-app.listen(8000, () => {
-  console.log("Listening on Port 8000  !");
 });
