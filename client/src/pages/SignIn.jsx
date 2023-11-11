@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInStart,
+  signInSuccess,
+  signInfailure,
+} from "../redux/user/userSlice";
 
 function SignIn() {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const { error, loading } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -18,7 +24,7 @@ function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true);
+      dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
@@ -29,16 +35,13 @@ function SignIn() {
       const data = await res.json();
 
       if (data.success === false) {
-        setIsLoading(false);
-        setError(data.message);
+        dispatch(signInfailure(data.message));
         return;
       }
-      setIsLoading(false);
-      setError(null);
+      dispatch(signInSuccess(data));
       navigate("/");
     } catch (err) {
-      setIsLoading(false);
-      setError(err.message);
+      dispatch(signInfailure(err.message));
     }
   };
 
@@ -61,10 +64,10 @@ function SignIn() {
           onChange={handleChange}
         />
         <button
-          disabled={isLoading}
+          disabled={loading}
           className="bg-slate-700 p-3 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-70"
         >
-          {isLoading ? "Loading..." : "Sign In"}
+          {loading ? "Loading..." : "Sign In"}
         </button>
       </form>
       <div className="mt-5">
