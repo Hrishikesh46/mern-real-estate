@@ -41,11 +41,10 @@ exports.signin = async (req, res, next) => {
     const { password: pass, ...rest } = validUser._doc;
 
     res
-      .cookie("access token", token, { httpOnly: true })
+      .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .json(rest);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -59,7 +58,7 @@ exports.google = async (req, res, next) => {
       const { password: pass, ...rest } = user._doc;
 
       res
-        .cookie("access token", token, { httpOnly: true })
+        .cookie("access_token", token, { httpOnly: true })
         .status(200)
         .json(rest);
     } else {
@@ -79,7 +78,7 @@ exports.google = async (req, res, next) => {
       const { password: pass, ...rest } = newUser._doc;
 
       res
-        .cookie("access token", token, { httpOnly: true })
+        .cookie("access_token", token, { httpOnly: true })
         .status(200)
         .json(rest);
     }
