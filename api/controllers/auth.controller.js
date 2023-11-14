@@ -14,7 +14,7 @@ exports.signup = async (req, res, next) => {
     });
 
     res.status(201).json({
-      status: "User created successfully",
+      success: true,
       data: {
         user: newUser,
       },
@@ -43,7 +43,12 @@ exports.signin = async (req, res, next) => {
     res
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
-      .json(rest);
+      .json({
+        success: true,
+        data: {
+          user: rest,
+        },
+      });
   } catch (err) {
     next(err);
   }
