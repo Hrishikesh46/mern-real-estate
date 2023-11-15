@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const userRouter = require("./routes/user.route");
 const authRouter = require("./routes/auth.route");
+const listingRouter = require("./routes/listing.route");
 const cookieParser = require("cookie-parser");
 
 mongoose
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 // to handle global error
 app.use((err, req, res, next) => {
