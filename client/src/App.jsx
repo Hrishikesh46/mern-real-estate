@@ -8,7 +8,7 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
-import CreateListing from "./pages/CreateListing";
+import CreateListing from "./pages/createListing";
 
 function App() {
   const router = createBrowserRouter([
