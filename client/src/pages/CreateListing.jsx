@@ -352,7 +352,7 @@ function CreateListing() {
           </p>
 
           {formData.imageUrls.length > 0 &&
-            formData.imageUrls.slice(1).map((url, index) => (
+            formData.imageUrls.map((url, index) => (
               // console.log(formData.imageUrls);
               <div
                 key={url}
