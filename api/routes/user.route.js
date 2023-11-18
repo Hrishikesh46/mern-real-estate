@@ -10,4 +10,6 @@ router.post("/update/:id", verifyToken, userController.updateUser);
 
 router.delete("/delete/:id", verifyToken, userController.deleteUser);
 
+router.get("/listings/:id", verifyToken, userController.getUserListings);
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const ErrorHandler = require("../utils/error");
 const User = require("../models/usermodel");
+const Listing = require("../models/listingmodel");
 
 exports.testRoute = (req, res) => {
   res.json({
@@ -45,11 +46,21 @@ exports.deleteUser = async (req, res, next) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.clearCookie("access_token");
-    res.status(200).json({
-      success: true,
-      message: "User deleted successfully",
-    });
+    res.status(200).json("User deleted successfully");
   } catch (error) {
     next(error);
+  }
+};
+
+exports.getUserListings = async (req, res, next) => {
+  if (req.user.id === req.params.id) {
+    try {
+      const listings = await Listing.find({ userRef: req.params.id });
+      res.status(200).json(listings);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(ErrorHandler(401, "You can only view your own listings!"));
   }
 };
