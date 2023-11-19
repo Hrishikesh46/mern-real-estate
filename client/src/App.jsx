@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/createListing";
+import UpdateListing from "./pages/UpdateListing";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +26,7 @@ function App() {
           children: [
             { path: "/profile", element: <Profile /> },
             { path: "/create-listing", element: <CreateListing /> },
+            { path: "/update-listing/:listingId", element: <UpdateListing /> },
           ],
         },
       ],
