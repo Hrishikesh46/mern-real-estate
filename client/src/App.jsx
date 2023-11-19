@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/createListing";
 import UpdateListing from "./pages/UpdateListing";
+import Listing from "./pages/Listing";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
         { path: "/sign-in", element: <SignIn /> },
         { path: "/sign-up", element: <SignUp /> },
         { path: "/about", element: <About /> },
+        { path: "/listing/:listingId", element: <Listing /> },
         {
           element: <PrivateRoute />,
           children: [
