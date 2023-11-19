@@ -100,7 +100,7 @@ function CreateListing() {
   };
 
   const handleChange = (e) => {
-    console.log(e);
+    // console.log(e);
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({
         ...formData,
