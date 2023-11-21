@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/createListing";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
+import Search from "./pages/Search";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,7 @@ function App() {
         { path: "/sign-in", element: <SignIn /> },
         { path: "/sign-up", element: <SignUp /> },
         { path: "/about", element: <About /> },
+        { path: "/search", element: <Search /> },
         { path: "/listing/:listingId", element: <Listing /> },
         {
           element: <PrivateRoute />,
