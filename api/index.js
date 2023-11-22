@@ -17,12 +17,12 @@ mongoose
     console.log(err);
   });
 
+const _dirname = path.resolve();
+
 const app = express();
 app.listen(8000, () => {
   console.log("Listening on Port 8000  !");
 });
-
-const __dirname = path.resolve();
 
 // to get the req.body
 app.use(express.json());
@@ -33,10 +33,10 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
+app.use(express.static(path.join(_dirname, "/client/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(_dirname, "client", "dist", "index.html"));
 });
 
 // to handle global error
